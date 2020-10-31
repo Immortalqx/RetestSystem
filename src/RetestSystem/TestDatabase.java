@@ -1,4 +1,5 @@
 package RetestSystem;
 
-class TestDatabase {
+public class TestDatabase {
+    //TODO
 }

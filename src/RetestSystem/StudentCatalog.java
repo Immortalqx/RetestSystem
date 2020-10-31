@@ -1,4 +1,5 @@
 package RetestSystem;
 
-class StudentCatalog {
+public class StudentCatalog {
+    //TODO
 }

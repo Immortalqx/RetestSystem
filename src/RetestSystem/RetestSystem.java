@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
 /**
  * This class implements a retest system.
  *
- * @author liYX&YangYY
- * @version 1.1.0
+ * @author 刘权祥
+ * @version 1.0.0
  * @see EnglishTest
  * @see ExamPaper
  * @see MathTest
@@ -240,16 +240,14 @@ public class RetestSystem {
      * Look up the student's score for each test.
      */
     private void lookupTestScore() throws IOException {
-
-        // hand written code goes here...
+        //TODO hand written code goes here...
     }
 
     /**
      * Look up the total score of the student.
      */
     private void lookupTotalScore() throws IOException {
-
-        // hand written code goes here...
+        //TODO hand written code goes here...
     }
 
     /**
@@ -387,10 +385,9 @@ public class RetestSystem {
      * Display the retest paper for the designated student.
      */
     private void displayExamPaper() throws IOException {
-
         Student student = readStudent();
 
-        // hand written code goes here...
+        //TODO hand written code goes here...
     }
 
     /**
@@ -408,9 +405,7 @@ public class RetestSystem {
      * Displays the catalog of students.
      */
     private void displayStudentCatalog() {
-
-        // hand written code goes here...
-
+        //TODO hand written code goes here...
     }
 
     /**
@@ -433,8 +428,7 @@ public class RetestSystem {
      * Obtains a Student object.
      */
     private Student addStudent() throws IOException {
-
-        // hand written code goes here...
+        //TODO hand written code goes here...
     }
 
     /**

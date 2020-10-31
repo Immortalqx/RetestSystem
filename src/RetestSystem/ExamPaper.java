@@ -1,4 +1,5 @@
 package RetestSystem;
 
-class ExamPaper {
+public class ExamPaper {
+    //TODO
 }
