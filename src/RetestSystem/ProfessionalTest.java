@@ -1,7 +1,7 @@
 package RetestSystem;
 
 public class ProfessionalTest extends Test {
-    //TODO
+
     private String programInstruction;
     private String programming;
     private String photoURL;
