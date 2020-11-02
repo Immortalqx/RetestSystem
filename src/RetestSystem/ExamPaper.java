@@ -3,8 +3,6 @@ package RetestSystem;
 import java.util.ArrayList;
 
 public class ExamPaper {
-    //TODO
-    // 似乎少了一个构造函数，是否有必要呢？
 
     private ArrayList<TestItem> testItems;
 

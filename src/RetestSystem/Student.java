@@ -41,13 +41,13 @@ public class Student {
     /**
      * Get the ExamPaper of a student object
      */
-    public ExamPaper getExamPaper() {
-        //TODO
-        if (examPaper == null) {
-
-            return null;
-        }
-        return examPaper;
-    }
+//    public ExamPaper getExamPaper() {
+//        //TODO
+//        if (examPaper == null) {
+//
+//            return null;
+//        }
+//        return examPaper;
+//    }
 
 }
