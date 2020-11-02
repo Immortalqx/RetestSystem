@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -390,6 +391,11 @@ public class RetestSystem {
         Student student = readStudent();
 
         //TODO hand written code goes here...
+        if (student == null) {
+            stdErr.println("Can't find this student! Please input again!");
+            displayExamPaper();
+        }
+        
 
     }
 
@@ -408,8 +414,8 @@ public class RetestSystem {
      * Displays the catalog of students.
      */
     private void displayStudentCatalog() {
-        //TODO hand written code goes here...
-
+        for (Student student : studentCatalog)
+            System.out.println(student.getId() + "_" + student.getName());
     }
 
     /**
@@ -432,8 +438,12 @@ public class RetestSystem {
      * Obtains a Student object.
      */
     private Student addStudent() throws IOException {
-        //TODO hand written code goes here...
+        Scanner scanner = new Scanner(System.in);
+        String id = scanner.next();
+        String name = scanner.next();
 
+        studentCatalog.addStudent(new Student(id, name));
+        System.out.println("Successfully added a student into the system!");
     }
 
     /**
