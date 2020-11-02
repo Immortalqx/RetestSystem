@@ -54,6 +54,7 @@ public class TestDatabase implements Iterable<Test> {
         return tests.size();
     }
 
+    @Override
     public Iterator<Test> iterator() {
         return tests.iterator();
     }
