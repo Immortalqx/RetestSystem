@@ -241,6 +241,7 @@ public class RetestSystem {
      */
     private void lookupTestScore() throws IOException {
         //TODO hand written code goes here...
+
     }
 
     /**
@@ -248,6 +249,7 @@ public class RetestSystem {
      */
     private void lookupTotalScore() throws IOException {
         //TODO hand written code goes here...
+
     }
 
     /**
@@ -388,6 +390,7 @@ public class RetestSystem {
         Student student = readStudent();
 
         //TODO hand written code goes here...
+
     }
 
     /**
@@ -406,6 +409,7 @@ public class RetestSystem {
      */
     private void displayStudentCatalog() {
         //TODO hand written code goes here...
+
     }
 
     /**
@@ -429,6 +433,7 @@ public class RetestSystem {
      */
     private Student addStudent() throws IOException {
         //TODO hand written code goes here...
+
     }
 
     /**

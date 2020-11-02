@@ -49,7 +49,7 @@ public class ExamPaper {
     /**
      * Get the number of TestItem object in this ExamPaper object.
      */
-    public int getNumberOfTestItem() {
+    public int getNumberOfItems() {
         return testItems.size();
     }
 

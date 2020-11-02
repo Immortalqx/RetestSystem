@@ -1,8 +1,9 @@
 package RetestSystem;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class TestDatabase {
+public class TestDatabase implements Iterable<Test> {
 
     private ArrayList<Test> tests;
 
@@ -40,7 +41,7 @@ public class TestDatabase {
      */
     public Test getTest(String code) {
         for (Test test : tests) {
-            if (test.getCode() == code)
+            if (test.getCode().equals(code))
                 return test;
         }
         return null;
@@ -53,4 +54,7 @@ public class TestDatabase {
         return tests.size();
     }
 
+    public Iterator<Test> iterator() {
+        return tests.iterator();
+    }
 }
