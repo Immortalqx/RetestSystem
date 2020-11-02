@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class ExamPaper implements Iterable<TestItem> {
 
-    private ArrayList<TestItem> testItems;
+    private ArrayList<TestItem> testItems = new ArrayList<TestItem>();
 
     /**
      * Get the total score of this ExamPaper object.

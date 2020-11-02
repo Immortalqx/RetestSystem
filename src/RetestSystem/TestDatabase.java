@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class TestDatabase implements Iterable<Test> {
 
-    private ArrayList<Test> tests;
+    private ArrayList<Test> tests = new ArrayList<Test>();
 
     /**
      * Add a test in this testDatabase.
