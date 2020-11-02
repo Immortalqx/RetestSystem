@@ -1,8 +1,9 @@
 package RetestSystem;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class ExamPaper {
+public class ExamPaper implements Iterable<TestItem> {
 
     private ArrayList<TestItem> testItems;
 
@@ -51,4 +52,9 @@ public class ExamPaper {
         return testItems.size();
     }
 
+
+    @Override
+    public Iterator<TestItem> iterator() {
+        return testItems.iterator();
+    }
 }

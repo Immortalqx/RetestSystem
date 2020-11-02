@@ -2,7 +2,7 @@ package RetestSystem;
 
 public class TestItem {
 
-    private Test test;
+    public Test test;
     private double score;
 
     /**

@@ -241,7 +241,21 @@ public class RetestSystem {
      * Look up the student's score for each test.
      */
     private void lookupTestScore() throws IOException {
-        //TODO hand written code goes here...
+
+        Student student = readStudent();
+        if (student == null) {
+            System.out.println("Can;t find the student id! Please input again!");
+            lookupTestScore();
+        }
+        assert student != null;
+        ExamPaper examPaper = student.getExamPaper();
+        if (examPaper == null || examPaper.getNumberOfItems() < 10) {
+            System.out.println("The Student hasn't got a test paper yet. Please complete it.");
+            return;
+        }
+        for (int i = 0; i < 10; i++) {
+            System.out.println("The Score of item " + i + " is : " + examPaper.getTestItem(i).getScore());
+        }
 
     }
 
@@ -249,8 +263,13 @@ public class RetestSystem {
      * Look up the total score of the student.
      */
     private void lookupTotalScore() throws IOException {
-        //TODO hand written code goes here...
-
+        Student student = readStudent();
+        if (student == null) {
+            System.out.println("Can't find the student id! Please input again!");
+            lookupTotalScore();
+        }
+        assert student != null;
+        System.out.println("The total score of the student is: " + student.getExamPaper().getTotalScore());
     }
 
     /**
@@ -390,12 +409,20 @@ public class RetestSystem {
     private void displayExamPaper() throws IOException {
         Student student = readStudent();
 
-        //TODO hand written code goes here...
         if (student == null) {
             stdErr.println("Can't find this student! Please input again!");
             displayExamPaper();
         }
-        
+        assert student != null;
+        ExamPaper examPaper = student.getExamPaper();
+
+        if (examPaper == null)
+            stdErr.println("No test Papers have been generated for this student!");
+        else {
+            for (TestItem testItem : examPaper) {
+                System.out.println(testItem.test.getCode() + " | " + testItem.test.getTitle() + " | " + testItem.getScore());
+            }
+        }
 
     }
 
@@ -442,8 +469,7 @@ public class RetestSystem {
         String id = scanner.next();
         String name = scanner.next();
 
-        studentCatalog.addStudent(new Student(id, name));
-        System.out.println("Successfully added a student into the system!");
+        return new Student(id, name);
     }
 
     /**
