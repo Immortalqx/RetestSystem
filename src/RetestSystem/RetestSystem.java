@@ -148,7 +148,6 @@ public class RetestSystem {
      */
     private static StudentCatalog loadStudent() {
         StudentCatalog studentCatalog = new StudentCatalog();
-
         studentCatalog.addStudent(new Student("2019213001", "吴广胜"));
         studentCatalog.addStudent(new Student("2019213002", "陈盛典"));
         studentCatalog.addStudent(new Student("2019213003", "刘子豪"));
