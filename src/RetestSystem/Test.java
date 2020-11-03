@@ -2,10 +2,10 @@ package RetestSystem;
 
 public class Test {
 
-    private String code;
-    private String title;
-    private int difficultyDegree;
-    private String scoreCriteria;
+    private final String code;
+    private final String title;
+    private final int difficultyDegree;
+    private final String scoreCriteria;
 
     /**
      * Constructs a <code>Test</code> object.

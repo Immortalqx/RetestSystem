@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class StudentCatalog implements Iterable<Student> {
 
-    private ArrayList<Student> students = new ArrayList<Student>();
+    private final ArrayList<Student> students = new ArrayList<Student>();
 
     /**
      * Add a student in this studentCatalog.

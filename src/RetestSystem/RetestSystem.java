@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Iterator;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -28,12 +28,12 @@ import java.util.regex.Pattern;
 
 public class RetestSystem {
 
-    private static BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-    private static PrintWriter stdOut = new PrintWriter(System.out, true);
-    private static PrintWriter stdErr = new PrintWriter(System.err, true);
+    private static final BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+    private static final PrintWriter stdOut = new PrintWriter(System.out, true);
+    private static final PrintWriter stdErr = new PrintWriter(System.err, true);
 
-    private StudentCatalog studentCatalog;
-    private TestDatabase testDatabase;
+    private final StudentCatalog studentCatalog;
+    private final TestDatabase testDatabase;
 
     /**
      * Loads the information of the student catalog and the test database and starts
@@ -224,7 +224,7 @@ public class RetestSystem {
 
                 stdErr.println();
 
-                if (0 <= input && 8 >= input) {
+                if (0 <= input && 7 >= input) {
                     break;
                 } else {
                     stdErr.println("Invalid choice:  " + input);
@@ -254,7 +254,7 @@ public class RetestSystem {
             return;
         }
         for (int i = 0; i < 10; i++) {
-            System.out.println("The Score of item " + i + " is : " + examPaper.getTestItem(i).getScore());
+            System.out.println("The Score of item " + (i + 1) + " is : " + examPaper.getTestItem(i).getScore());
         }
 
     }
@@ -339,12 +339,8 @@ public class RetestSystem {
             } else {
 
                 int[] testTypeNums = new int[3];
-                for (int i = 0; i < testTypeNums.length; i++) {
-                    testTypeNums[i] = 0;
-                }
-                Iterator<Test> iterator = this.testDatabase.iterator();
-                while (iterator.hasNext()) {
-                    Test test = iterator.next();
+
+                for (Test test : this.testDatabase) {
                     if (test instanceof EnglishTest) {
                         testTypeNums[0]++;
                     } else if (test instanceof MathTest) {
@@ -363,9 +359,7 @@ public class RetestSystem {
                 Random random = new Random();
                 ExamPaper examPaper = new ExamPaper();
 
-                for (int i = 0; i < testTypeNums.length; i++) {
-                    testTypeNums[i] = 0;
-                }
+                Arrays.fill(testTypeNums, 0);
 
                 int allTestCount = testDatabase.getNumberOfTests();
 
@@ -413,6 +407,7 @@ public class RetestSystem {
             stdErr.println("Can't find this student! Please input again!");
             displayExamPaper();
         }
+
         assert student != null;
         ExamPaper examPaper = student.getExamPaper();
 
@@ -448,25 +443,27 @@ public class RetestSystem {
     /**
      * Add a student into the system.
      */
-    private void addStudentToCatalog() throws IOException {
+    private void addStudentToCatalog() {
 
         Student student = addStudent();
 
-        if (student == null) {
-            stdErr.println("Failed to add student");
-        } else {
-            this.studentCatalog.addStudent(student);
-            stdOut.println("Successfully added a student into the system!");
-        }
+        this.studentCatalog.addStudent(student);
+        stdOut.println("Successfully added a student into the system!");
 
     }
 
     /**
      * Obtains a Student object.
      */
-    private Student addStudent() throws IOException {
+    private Student addStudent() {
         Scanner scanner = new Scanner(System.in);
+
+        stdErr.print("Student id> ");
+        stdErr.flush();
         String id = scanner.next();
+
+        stdErr.print("Student name> ");
+        stdErr.flush();
         String name = scanner.next();
 
         return new Student(id, name);
@@ -478,11 +475,7 @@ public class RetestSystem {
     public boolean isNumber(String str) {
         Pattern pattern = Pattern.compile("[0-9]*");
         Matcher match = pattern.matcher(str);
-        if (match.matches()) {
-            return true;
-        }
-        return false;
+        return match.matches();
     }
-
 
 }

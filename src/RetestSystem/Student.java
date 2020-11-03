@@ -4,9 +4,9 @@ package RetestSystem;
  * This class represent a student.
  */
 public class Student {
-
-    private String id;
-    private String name;
+    
+    private final String id;
+    private final String name;
     private ExamPaper examPaper = null;
 
     /**

@@ -9,7 +9,7 @@ public class TestItem {
      * Constructs a <code>TestItem</code> object.
      *
      * @param initial_test  Test arguments. Means a testItem's initial_test.
-     * @param initial_score String arguments. Means a testItem's initial_score.
+     * @param initial_score double arguments. Means a testItem's initial_score.
      */
     public TestItem(Test initial_test, double initial_score) {
         this.test = initial_test;
