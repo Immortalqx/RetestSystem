@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,7 +13,7 @@ import java.util.regex.Pattern;
  * This class implements a retest system.
  *
  * @author 刘权祥
- * @version 1.0.0
+ * @version 1.5.0
  * @see EnglishTest
  * @see ExamPaper
  * @see MathTest
@@ -244,17 +243,17 @@ public class RetestSystem {
 
         Student student = readStudent();
         if (student == null) {
-            System.out.println("Can;t find the student id! Please input again!");
+            stdErr.println("Can't find the student id! Please input again!");
             lookupTestScore();
         }
         assert student != null;
         ExamPaper examPaper = student.getExamPaper();
         if (examPaper == null || examPaper.getNumberOfItems() < 10) {
-            System.out.println("The Student hasn't got a test paper yet. Please complete it.");
+            stdErr.println("The Student hasn't got a test paper yet. Please complete it.");
             return;
         }
         for (int i = 0; i < 10; i++) {
-            System.out.println("The Score of item " + (i + 1) + " is : " + examPaper.getTestItem(i).getScore());
+            stdOut.println("The Score of item " + (i + 1) + " is : " + examPaper.getTestItem(i).getScore());
         }
 
     }
@@ -265,11 +264,11 @@ public class RetestSystem {
     private void lookupTotalScore() throws IOException {
         Student student = readStudent();
         if (student == null) {
-            System.out.println("Can't find the student id! Please input again!");
+            stdErr.println("Can't find the student id! Please input again!");
             lookupTotalScore();
         }
         assert student != null;
-        System.out.println("The total score of the student is: " + student.getExamPaper().getTotalScore());
+        stdErr.println("The total score of the student is: " + student.getExamPaper().getTotalScore());
     }
 
     /**
@@ -415,7 +414,7 @@ public class RetestSystem {
             stdErr.println("No test Papers have been generated for this student!");
         else {
             for (TestItem testItem : examPaper) {
-                System.out.println(testItem.test.getCode() + " | " + testItem.test.getTitle() + " | " + testItem.getScore());
+                stdOut.println(testItem.test.getCode() + " | " + testItem.test.getTitle() + " | " + testItem.getScore());
             }
         }
 
@@ -436,14 +435,15 @@ public class RetestSystem {
      * Displays the catalog of students.
      */
     private void displayStudentCatalog() {
+        //TODO remains a bug here!
         for (Student student : studentCatalog)
-            System.out.println(student.getId() + "_" + student.getName());
+            stdOut.println(student.getId() + "_" + student.getName());
     }
 
     /**
      * Add a student into the system.
      */
-    private void addStudentToCatalog() {
+    private void addStudentToCatalog() throws IOException {
 
         Student student = addStudent();
 
@@ -455,16 +455,15 @@ public class RetestSystem {
     /**
      * Obtains a Student object.
      */
-    private Student addStudent() {
-        Scanner scanner = new Scanner(System.in);
+    private Student addStudent() throws IOException {
 
         stdErr.print("Student id> ");
         stdErr.flush();
-        String id = scanner.next();
+        String id = stdIn.readLine();
 
         stdErr.print("Student name> ");
         stdErr.flush();
-        String name = scanner.next();
+        String name = stdIn.readLine();
 
         return new Student(id, name);
     }
