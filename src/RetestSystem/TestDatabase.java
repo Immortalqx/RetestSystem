@@ -3,6 +3,9 @@ package RetestSystem;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * This class implements a TestDatabase.
+ */
 public class TestDatabase implements Iterable<Test> {
 
     private final ArrayList<Test> tests = new ArrayList<Test>();
@@ -29,6 +32,8 @@ public class TestDatabase implements Iterable<Test> {
      * get the test you want in this testDatabase.
      *
      * @param code int arguments. The test you want to get in this testDatabase.
+     *
+     * @return the test get by the code
      */
     public Test getTest(int code) {
         return tests.get(code);
@@ -38,6 +43,8 @@ public class TestDatabase implements Iterable<Test> {
      * get the test you want in this testDatabase.
      *
      * @param code String arguments. The test you want to get in this testDatabase.
+     *
+     * @return null when can't find the test, or test when find test by code
      */
     public Test getTest(String code) {
         for (Test test : tests) {
@@ -49,6 +56,7 @@ public class TestDatabase implements Iterable<Test> {
 
     /**
      * get the number of tests in this testDatabase.
+     * @return the number of tests.
      */
     public int getNumberOfTests() {
         return tests.size();

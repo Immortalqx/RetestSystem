@@ -1,5 +1,8 @@
 package RetestSystem;
 
+/**
+ * This class implements a ProfessionalTest.
+ */
 public class ProfessionalTest extends Test {
 
     private String programInstruction;
@@ -33,6 +36,8 @@ public class ProfessionalTest extends Test {
 
     /**
      * Get the programInstruction of a ProfessionalTest object.
+     *
+     * @return the instruction of this test.
      */
     public String getProgramInstruction() {
         return this.programInstruction;
@@ -40,6 +45,8 @@ public class ProfessionalTest extends Test {
 
     /**
      * Get the programming of a ProfessionalTest object.
+     *
+     * @return the programming of this test.
      */
     public String getProgramming() {
         return this.programming;
@@ -47,6 +54,8 @@ public class ProfessionalTest extends Test {
 
     /**
      * Get the photoURL of a ProfessionalTest object.
+     *
+     * @return the photoURL of this test.
      */
     public String getPhotoURL() {
         return this.photoURL;
@@ -54,6 +63,8 @@ public class ProfessionalTest extends Test {
 
     /**
      * Set a new value for programInstruction.
+     *
+     * @param new_programInstruction String arguments.a new value for programInstruction.
      */
     public void setProgramInstruction(String new_programInstruction) {
         this.programInstruction = new_programInstruction;
@@ -61,6 +72,8 @@ public class ProfessionalTest extends Test {
 
     /**
      * Set a new value for programming.
+     *
+     * @param new_programming String arguments.a new value for programming.
      */
     public void setProgramming(String new_programming) {
         this.programming = new_programming;
@@ -68,6 +81,8 @@ public class ProfessionalTest extends Test {
 
     /**
      * Set a new value for photoURL.
+     *
+     * @param new_photoURL String arguments.a new value for photoURL.
      */
     public void setPhotoURL(String new_photoURL) {
         this.photoURL = new_photoURL;

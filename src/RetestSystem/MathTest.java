@@ -1,5 +1,8 @@
 package RetestSystem;
 
+/**
+ * This class implements a MathTest.
+ */
 public class MathTest extends Test {
 
     private String photoURL;
@@ -29,6 +32,8 @@ public class MathTest extends Test {
 
     /**
      * Get the photoURL of a MathTest object.
+     *
+     * @return the photoURL of a MathTest object.
      */
     public String getPhotoURL() {
         return this.photoURL;
@@ -36,6 +41,8 @@ public class MathTest extends Test {
 
     /**
      * Get the getCalculationProcess of a MathTest object.
+     *
+     * @return the getCalculationProcess of a MathTest object.
      */
     public String getCalculationProcess() {
         return this.calculationProcess;
@@ -43,6 +50,8 @@ public class MathTest extends Test {
 
     /**
      * Set a new value for photoURL.
+     *
+     * @param new_photoURL String arguments. Means a test's new_photoURL you want to set.
      */
     public void setPhotoURL(String new_photoURL) {
         this.photoURL = new_photoURL;
@@ -50,6 +59,8 @@ public class MathTest extends Test {
 
     /**
      * Set a new value for calculationProcess.
+     *
+     * @param new_calculationProcess String arguments. a new value for calculationProcess.
      */
     public void setCalculationProcess(String new_calculationProcess) {
         this.calculationProcess = new_calculationProcess;

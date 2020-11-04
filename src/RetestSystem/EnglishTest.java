@@ -1,5 +1,8 @@
 package RetestSystem;
 
+/**
+ * This class implements a EnglishTest.
+ */
 public class EnglishTest extends Test {
 
     private String type;
@@ -25,6 +28,8 @@ public class EnglishTest extends Test {
 
     /**
      * Get the type of an EnglishTest object.
+     *
+     * @return the type of an EnglishTest object.
      */
     public String getType() {
         return this.type;
@@ -32,6 +37,8 @@ public class EnglishTest extends Test {
 
     /**
      * Set a new value for type.
+     *
+     * @param new_type String arguments. Means a test's type.
      */
     public void setType(String new_type) {
         this.type = new_type;

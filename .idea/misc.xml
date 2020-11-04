@@ -5,6 +5,10 @@
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
+  <component name="JavadocGenerationManager">
+    <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/紧急作业！！！/javadoc" />
+    <option name="OTHER_OPTIONS" value="-encoding utf-8 -charset utf-8" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_14" default="false" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

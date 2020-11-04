@@ -3,12 +3,17 @@ package RetestSystem;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * This class implements a ExamPaper.
+ */
 public class ExamPaper implements Iterable<TestItem> {
 
     private final ArrayList<TestItem> testItems = new ArrayList<TestItem>();
 
     /**
      * Get the total score of this ExamPaper object.
+     *
+     * @return the total score of this ExamPaper object.
      */
     public double getTotalScore() {
         double totalScore = 0.0d;
@@ -40,6 +45,7 @@ public class ExamPaper implements Iterable<TestItem> {
      * Get the testItem by its id.
      *
      * @param index int arguments. The id of the testItem you want to get.
+     * @return the testItem find by id.
      */
     public TestItem getTestItem(int index) {
         return testItems.get(index);
@@ -47,6 +53,8 @@ public class ExamPaper implements Iterable<TestItem> {
 
     /**
      * Get the number of TestItem object in this ExamPaper object.
+     *
+     * @return the number of TestItem object in this ExamPaper object.
      */
     public int getNumberOfItems() {
         return testItems.size();

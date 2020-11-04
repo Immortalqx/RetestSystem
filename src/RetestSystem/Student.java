@@ -4,7 +4,7 @@ package RetestSystem;
  * This class represent a student.
  */
 public class Student {
-    
+
     private final String id;
     private final String name;
     private ExamPaper examPaper = null;
@@ -20,12 +20,19 @@ public class Student {
         this.name = initial_name;
     }
 
+    /**
+     * Set the examPaper of a student object
+     *
+     * @param initial_examPaper ExamPaper arguments. Means a student's ExamPaper.
+     */
     public void setExamPaper(ExamPaper initial_examPaper) {
         this.examPaper = initial_examPaper;
     }
 
     /**
      * Get the id of a student object
+     *
+     * @return the id of this student.
      */
     public String getId() {
         return this.id;
@@ -33,6 +40,8 @@ public class Student {
 
     /**
      * Get the name of a student object
+     *
+     * @return the name of this student.
      */
     public String getName() {
         return this.name;
@@ -40,6 +49,8 @@ public class Student {
 
     /**
      * Get the ExamPaper of a student object
+     *
+     * @return the example of this student.
      */
     public ExamPaper getExamPaper() {
         return examPaper;

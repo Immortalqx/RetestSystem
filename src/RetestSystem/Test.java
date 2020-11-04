@@ -1,5 +1,8 @@
 package RetestSystem;
 
+/**
+ * This class implements a Test.
+ */
 public class Test {
 
     private final String code;
@@ -28,6 +31,8 @@ public class Test {
 
     /**
      * Get the code of a test object.
+     *
+     * @return the code of this test.
      */
     public String getCode() {
         return this.code;
@@ -35,6 +40,8 @@ public class Test {
 
     /**
      * Get the title of a test object.
+     *
+     * @return the title of this test.
      */
     public String getTitle() {
         return this.title;
@@ -42,6 +49,8 @@ public class Test {
 
     /**
      * Get the difficultyDegree of a test object.
+     *
+     * @return the difficultyDegree of this test.
      */
     public int getDifficultyDegree() {
         return this.difficultyDegree;
@@ -49,6 +58,8 @@ public class Test {
 
     /**
      * Get the scoreCriteria of a test object.
+     *
+     * @return the scoreCriteria of this test.
      */
     public String getScoreCriteria() {
         return this.scoreCriteria;

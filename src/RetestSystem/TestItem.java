@@ -1,7 +1,13 @@
 package RetestSystem;
 
+/**
+ * This class implements a TestItem.
+ */
 public class TestItem {
 
+    /**
+     * the Test object in this testItem.
+     */
     public Test test;
     private double score;
 
@@ -18,6 +24,8 @@ public class TestItem {
 
     /**
      * Get the score of a TestItem object.
+     *
+     * @return the score of this testItem.
      */
     public double getScore() {
         return this.score;
@@ -25,6 +33,8 @@ public class TestItem {
 
     /**
      * Set a new value for score.
+     *
+     * @param new_score double arguments. Means a testItem's new_score you want to set.
      */
     public void setScore(double new_score) {
         this.score = new_score;

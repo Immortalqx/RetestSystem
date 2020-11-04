@@ -55,6 +55,9 @@ public class RetestSystem {
     /**
      * Constructs a <code>RetestSystem</code> object. Initialize the student catalog
      * and the test database with the values specified in the parameters.
+     *
+     * @param initialStudentCatalog StudentCatalog arguments.
+     * @param initialTestDatabase   TestDatabase arguments.
      */
     public RetestSystem(StudentCatalog initialStudentCatalog, TestDatabase initialTestDatabase) {
 
@@ -62,8 +65,10 @@ public class RetestSystem {
         this.testDatabase = initialTestDatabase;
     }
 
-    /*
+    /**
      * Loads the information of a test database.
+     *
+     * @return the initialed estDatabase.
      */
     private static TestDatabase loadTestDatabase() {
 
@@ -145,6 +150,8 @@ public class RetestSystem {
 
     /**
      * Loads the information of a student catalog.
+     *
+     * @return the initialed studentCatalog.
      */
     private static StudentCatalog loadStudent() {
         StudentCatalog studentCatalog = new StudentCatalog();
@@ -203,6 +210,9 @@ public class RetestSystem {
 
     /**
      * Validates the user's choice.
+     *
+     * @return the choice input.
+     * @throws IOException if can't get the choice rightly.
      */
     private int getChoice() throws IOException {
 
@@ -237,6 +247,8 @@ public class RetestSystem {
 
     /**
      * Look up the student's score for each test.
+     *
+     * @throws IOException if read student failed.
      */
     private void lookupTestScore() throws IOException {
 
@@ -259,6 +271,8 @@ public class RetestSystem {
 
     /**
      * Look up the total score of the student.
+     *
+     * @throws IOException if read student failed.
      */
     private void lookupTotalScore() throws IOException {
         Student student = readStudent();
@@ -272,6 +286,8 @@ public class RetestSystem {
 
     /**
      * Input the score of each test in the retest of the designated student.
+     *
+     * @throws IOException if entry score failed.
      */
     private void entryScore() throws IOException {
 
@@ -322,6 +338,8 @@ public class RetestSystem {
 
     /**
      * Generate a random retest paper for the designated student.
+     *
+     * @throws IOException if read student failed.
      */
     private void generateExamPaper() throws IOException {
 
@@ -397,6 +415,8 @@ public class RetestSystem {
 
     /**
      * Display the retest paper for the designated student.
+     *
+     * @throws IOException if read student failed.
      */
     private void displayExamPaper() throws IOException {
         Student student = readStudent();
@@ -421,6 +441,9 @@ public class RetestSystem {
 
     /**
      * Obtains a Student object.
+     *
+     * @return the Student find by student id.
+     * @throws IOException if read student failed.
      */
     private Student readStudent() throws IOException {
 
@@ -434,13 +457,15 @@ public class RetestSystem {
      * Displays the catalog of students.
      */
     private void displayStudentCatalog() {
-        //TODO remains a bug here!
+
         for (Student student : studentCatalog)
             stdOut.println(student.getId() + "_" + student.getName());
     }
 
     /**
      * Add a student into the system.
+     *
+     * @throws IOException if read student failed.
      */
     private void addStudentToCatalog() throws IOException {
 
@@ -453,6 +478,8 @@ public class RetestSystem {
 
     /**
      * Obtains a Student object.
+     *
+     * @throws IOException if add student failed.
      */
     private Student addStudent() throws IOException {
 
@@ -469,6 +496,9 @@ public class RetestSystem {
 
     /**
      * Determine whether the input information is a number.
+     *
+     * @param str String arguments. the String object need to judge.
+     * @return true if str is number; false if str is not number.
      */
     public boolean isNumber(String str) {
         Pattern pattern = Pattern.compile("[0-9]*");
