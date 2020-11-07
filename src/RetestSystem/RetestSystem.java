@@ -291,15 +291,11 @@ public class RetestSystem {
      * @throws IOException if entry score failed.
      */
     private void entryScore() throws IOException {
-
         int flag = 0;
-        stdErr.print("Student id> ");
-        stdErr.flush();
-        String id = stdIn.readLine();
+        String id = readId();
 
         for (Student student : this.studentCatalog) {
             if (student.getId().equals(id)) {
-
                 flag++;
                 if (student.getExamPaper() == null) {
                     stdErr.print("The student hasn't got a test paper yet. Please complete it");
@@ -312,6 +308,13 @@ public class RetestSystem {
                         stdErr.print("The score of item" + " " + (i + 1) + " " + "is:");
                         stdErr.flush();
                         String readScore = stdIn.readLine();
+
+                        if (readScore.length() <= 0) {
+                            stdErr.println("ILLEGAL INPUT!PLEASE INPUT AGAIN!");
+                            i--;
+                            continue;
+                        }
+
                         if (isNumber(readScore)) {
                             double score = Double.parseDouble(readScore);
                             if (score > 10 || score < 0) {
@@ -330,9 +333,7 @@ public class RetestSystem {
                 }
             }
         }
-
         if (flag == 0) {
-
             stdErr.println("The student is not in the student catalog");
         }
     }
@@ -423,16 +424,15 @@ public class RetestSystem {
         Student student = readStudent();
 
         if (student == null) {
-            stdErr.println("Can't find this student! Please input again!");
-            displayExamPaper();
+            stdErr.println("Can't find this student!");
+            return;
         }
 
-        assert student != null;
         ExamPaper examPaper = student.getExamPaper();
 
-        if (examPaper == null)
+        if (examPaper == null) {
             stdErr.println("No test Papers have been generated for this student!");
-        else {
+        } else {
             for (TestItem testItem : examPaper) {
                 stdOut.println(testItem.test.getCode() + " | " + testItem.test.getTitle() + " | " + testItem.getScore());
             }
@@ -447,11 +447,7 @@ public class RetestSystem {
      * @throws IOException if read student failed.
      */
     private Student readStudent() throws IOException {
-
-        stdErr.print("Student id> ");
-        stdErr.flush();
-
-        return this.studentCatalog.getStudent(stdIn.readLine());
+        return this.studentCatalog.getStudent(readId());
     }
 
     /**
@@ -484,34 +480,8 @@ public class RetestSystem {
      * @throws IOException if add student failed.
      */
     private Student addStudent() throws IOException {
-
-        stdErr.print("Student id> ");
-        stdErr.flush();
-        String id = stdIn.readLine();
-        id = id.trim();
-
-        while (id.length() <= 0) {
-            stdErr.println("WRONG INPUT!");
-
-            stdErr.print("Student id> ");
-            stdErr.flush();
-            id = stdIn.readLine();
-            id = id.trim();
-        }
-
-        stdErr.print("Student name> ");
-        stdErr.flush();
-        String name = stdIn.readLine();
-        name = name.trim();
-
-        while (name.length() <= 0) {
-            stdErr.println("WRONG INPUT!");
-
-            stdErr.print("Student id> ");
-            stdErr.flush();
-            name = stdIn.readLine();
-            name = name.trim();
-        }
+        String id = readId();
+        String name = readName();
 
         return new Student(id, name);
     }
@@ -526,6 +496,37 @@ public class RetestSystem {
         Pattern pattern = Pattern.compile("[0-9]*");
         Matcher match = pattern.matcher(str);
         return match.matches();
+    }
+
+    private String readId() throws IOException {
+
+        stdErr.print("Student id> ");
+        stdErr.flush();
+        String id = stdIn.readLine();
+
+        id = id.replaceAll(" ", "");
+        //id = id.trim();
+
+        while (id.length() <= 0) {
+            stdErr.println("ILLEGAL INPUT!PLEASE INPUT AGAIN!");
+            id = readId();
+        }
+        return id;
+    }
+
+    private String readName() throws IOException {
+        stdErr.print("Student name> ");
+        stdErr.flush();
+        String name = stdIn.readLine();
+        name = name.replaceAll(" ", "");
+        //name = name.trim();
+
+        while (name.length() <= 0) {
+            stdErr.println("ILLEGAL INPUT!PLEASE INPUT AGAIN!");
+
+            name = readName();
+        }
+        return name;
     }
 
 }
