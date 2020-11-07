@@ -254,16 +254,18 @@ public class RetestSystem {
     private void lookupTestScore() throws IOException {
 
         Student student = readStudent();
-        if (student == null) {
+        while (student == null) {
             stdErr.println("Can't find the student id! Please input again!");
-            lookupTestScore();
+            student = readStudent();
         }
-        assert student != null;
+
         ExamPaper examPaper = student.getExamPaper();
+
         if (examPaper == null || examPaper.getNumberOfItems() < 10) {
             stdErr.println("The Student hasn't got a test paper yet. Please complete it.");
             return;
         }
+
         for (int i = 0; i < 10; i++) {
             stdOut.println("The Score of item " + (i + 1) + " is : " + examPaper.getTestItem(i).getScore());
         }
@@ -277,11 +279,10 @@ public class RetestSystem {
      */
     private void lookupTotalScore() throws IOException {
         Student student = readStudent();
-        if (student == null) {
+        while (student == null) {
             stdErr.println("Can't find the student id! Please input again!");
-            lookupTotalScore();
+            student = readStudent();
         }
-        assert student != null;
         stdErr.println("The total score of the student is: " + student.getExamPaper().getTotalScore());
     }
 
@@ -310,12 +311,9 @@ public class RetestSystem {
                         String readScore = stdIn.readLine();
 
                         if (readScore.length() <= 0) {
-                            stdErr.println("ILLEGAL INPUT!PLEASE INPUT AGAIN!");
+                            stdErr.println("Illegal input! Please check your input and input again!");
                             i--;
-                            continue;
-                        }
-
-                        if (isNumber(readScore)) {
+                        } else if (isNumber(readScore)) {
                             double score = Double.parseDouble(readScore);
                             if (score > 10 || score < 0) {
                                 stdErr.println("The score of each test is no more than 10 or less than 0. Please re-enter!");
@@ -481,6 +479,13 @@ public class RetestSystem {
      */
     private Student addStudent() throws IOException {
         String id = readId();
+        Student student = studentCatalog.getStudent(id);
+        while (student != null) {
+            stdErr.println("This id is used by " + student.getName() + ". Please check your id number and input again!");
+            id = readId();
+            student = studentCatalog.getStudent(id);
+        }
+
         String name = readName();
 
         return new Student(id, name);
@@ -507,12 +512,17 @@ public class RetestSystem {
         id = id.replaceAll(" ", "");
         //id = id.trim();
 
-        while (id.length() <= 0) {
-            stdErr.println("ILLEGAL INPUT!PLEASE INPUT AGAIN!");
+        boolean result = id.matches("[a-zA-Z0-9]+");
+
+
+        while (id.length() <= 0 || !result) {
+            stdErr.println("Illegal input! Please check your input and input again!");
             id = readId();
+            result = id.matches("[a-zA-Z0-9]+");
         }
         return id;
     }
+
 
     private String readName() throws IOException {
         stdErr.print("Student name> ");
@@ -520,11 +530,13 @@ public class RetestSystem {
         String name = stdIn.readLine();
         name = name.replaceAll(" ", "");
         //name = name.trim();
+        String regex = "^[a-zA-Z\u4e00-\u9fa5]+$";
+        boolean result = name.matches(regex);
 
-        while (name.length() <= 0) {
-            stdErr.println("ILLEGAL INPUT!PLEASE INPUT AGAIN!");
-
+        while (name.length() <= 0 || !result) {
+            stdErr.println("Illegal input! Please check your input and input again!");
             name = readName();
+            result = name.matches(regex);
         }
         return name;
     }
