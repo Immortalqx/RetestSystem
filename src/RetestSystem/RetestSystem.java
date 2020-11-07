@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * This class implements a retest system.
  *
  * @author 刘权祥
- * @version 1.5.0
+ * @version 2.0.0
  * @see EnglishTest
  * @see ExamPaper
  * @see MathTest
