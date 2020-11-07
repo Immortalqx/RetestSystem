@@ -88,4 +88,14 @@ public class ProfessionalTest extends Test {
         this.photoURL = new_photoURL;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ProfessionalTest that = (ProfessionalTest) o;
+        return getProgramInstruction().equals(that.getProgramInstruction()) &&
+                getProgramming().equals(that.getProgramming()) &&
+                getPhotoURL().equals(that.getPhotoURL());
+    }
 }

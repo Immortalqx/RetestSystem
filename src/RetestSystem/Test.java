@@ -1,5 +1,6 @@
 package RetestSystem;
 
+
 /**
  * This class implements a Test.
  */
@@ -66,14 +67,14 @@ public class Test {
     }
 
     @Override
-    public String toString() {
-        return "Test{" +
-                "difficultyDegree=" + difficultyDegree +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Test test = (Test) o;
+        return getDifficultyDegree() == test.getDifficultyDegree() &&
+                getCode().equals(test.getCode()) &&
+                getTitle().equals(test.getTitle()) &&
+                getScoreCriteria().equals(test.getScoreCriteria());
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
 }

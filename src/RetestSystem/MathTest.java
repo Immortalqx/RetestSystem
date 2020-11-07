@@ -1,5 +1,7 @@
 package RetestSystem;
 
+import java.util.Objects;
+
 /**
  * This class implements a MathTest.
  */
@@ -66,6 +68,13 @@ public class MathTest extends Test {
         this.calculationProcess = new_calculationProcess;
     }
 
-
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        MathTest mathTest = (MathTest) o;
+        return getPhotoURL().equals(mathTest.getPhotoURL()) &&
+                getCalculationProcess().equals(mathTest.getCalculationProcess());
+    }
 }

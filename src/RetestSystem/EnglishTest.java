@@ -1,5 +1,6 @@
 package RetestSystem;
 
+
 /**
  * This class implements a EnglishTest.
  */
@@ -43,4 +44,14 @@ public class EnglishTest extends Test {
     public void setType(String new_type) {
         this.type = new_type;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        EnglishTest that = (EnglishTest) o;
+        return getType().equals(that.getType());
+    }
+
 }
