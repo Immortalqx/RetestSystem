@@ -230,7 +230,8 @@ public class RetestSystem {
 
                 input = Integer.parseInt(stdIn.readLine());
 
-                stdErr.println();
+//                stdErr.println();
+//                stdOut.flush();
 
                 if (0 <= input && 7 >= input) {
                     break;
@@ -457,9 +458,10 @@ public class RetestSystem {
      * Displays the catalog of students.
      */
     private void displayStudentCatalog() {
-
         for (Student student : studentCatalog)
             stdOut.println(student.getId() + "_" + student.getName());
+
+        stdOut.flush();
     }
 
     /**
