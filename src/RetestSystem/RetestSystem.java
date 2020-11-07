@@ -489,9 +489,25 @@ public class RetestSystem {
         stdErr.flush();
         String id = stdIn.readLine();
 
+        while (id == null) {
+            stdErr.println("WRONG INPUT!");
+
+            stdErr.print("Student id> ");
+            stdErr.flush();
+            id = stdIn.readLine();
+        }
+
         stdErr.print("Student name> ");
         stdErr.flush();
         String name = stdIn.readLine();
+
+        while (name == null) {
+            stdErr.println("WRONG INPUT!");
+
+            stdErr.print("Student id> ");
+            stdErr.flush();
+            name = stdIn.readLine();
+        }
 
         return new Student(id, name);
     }
