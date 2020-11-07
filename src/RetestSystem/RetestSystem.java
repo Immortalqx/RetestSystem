@@ -530,13 +530,16 @@ public class RetestSystem {
         String name = stdIn.readLine();
         name = name.replaceAll(" ", "");
         //name = name.trim();
-        String regex = "^[a-zA-Z\u4e00-\u9fa5]+$";
-        boolean result = name.matches(regex);
+        String regexa = "^[\u4e00-\u9fa5]+$";
+        String regexb = "^[a-zA-Z]+$";
+        boolean resulta = name.matches(regexa);
+        boolean resultb = name.matches(regexb);
 
-        while (name.length() <= 0 || !result) {
+        while (name.length() <= 0 || (!resulta && !resultb)) {
             stdErr.println("Illegal input! Please check your input and input again!");
             name = readName();
-            result = name.matches(regex);
+            resulta = name.matches(regexa);
+            resultb = name.matches(regexb);
         }
         return name;
     }
