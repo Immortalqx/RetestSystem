@@ -64,4 +64,16 @@ public class Test {
     public String getScoreCriteria() {
         return this.scoreCriteria;
     }
+
+    @Override
+    public String toString() {
+        return "Test{" +
+                "difficultyDegree=" + difficultyDegree +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

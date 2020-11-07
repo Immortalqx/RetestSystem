@@ -1,5 +1,7 @@
 package RetestSystem;
 
+import java.util.Objects;
+
 /**
  * This class represent a student.
  */
@@ -56,4 +58,18 @@ public class Student {
         return examPaper;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return id.equals(student.id) &&
+                name.equals(student.name) &&
+                Objects.equals(examPaper, student.examPaper);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, examPaper);
+    }
 }
