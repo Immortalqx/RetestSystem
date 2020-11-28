@@ -4,7 +4,11 @@ import RetestSystem.Base.*;
 
 public class PlainTextStudentsFormatter implements StudentsFormatter {
 
-    /* Line separator */
+    /*
+      下面相当于"\n"
+      Linux跟Windows是有差别的,"\n" 在Linux上不确定能不能运行；
+      但Java是跨平台的，所以System.getProperty("line.separator") 在Linux跟Windows 都可以运行；
+     */
     private final static String NEW_LINE = System.getProperty("line.separator");
 
     private static PlainTextStudentsFormatter singletonInstance;
@@ -13,6 +17,11 @@ public class PlainTextStudentsFormatter implements StudentsFormatter {
 
     }
 
+    /**
+     * 实现单例模式
+     *
+     * @return the object of this class
+     */
     public static PlainTextStudentsFormatter getSingletonInstance() {
 
         if (singletonInstance == null) {

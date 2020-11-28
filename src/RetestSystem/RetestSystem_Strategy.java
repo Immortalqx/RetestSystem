@@ -27,6 +27,9 @@ import java.util.regex.Pattern;
  * @see RetestSystem.Base.Test
  * @see RetestSystem.Base.TestDatabase
  * @see RetestSystem.Base.TestItem
+ * @see RetestSystem.Strategy.PlainTextStudentsFormatter
+ * @see RetestSystem.Strategy.XMLStudentsFormatter
+ * @see RetestSystem.Strategy.HTMLStudentsFormatter
  */
 
 public class RetestSystem_Strategy {
@@ -243,9 +246,6 @@ public class RetestSystem_Strategy {
                 stdErr.flush();
 
                 input = Integer.parseInt(stdIn.readLine());
-
-//                stdErr.println();
-//                stdOut.flush();
 
                 if (0 <= input && 7 >= input) {
                     break;
@@ -517,6 +517,9 @@ public class RetestSystem_Strategy {
         return match.matches();
     }
 
+    /**
+     * Read the ID of students from console.
+     */
     private String readId() throws IOException {
 
         stdErr.print("Student id> ");
@@ -537,7 +540,9 @@ public class RetestSystem_Strategy {
         return id;
     }
 
-
+    /**
+     * Read the Name of students from console.
+     */
     private String readName() throws IOException {
         stdErr.print("Student name> ");
         stdErr.flush();

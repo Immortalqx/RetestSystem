@@ -4,7 +4,6 @@ import RetestSystem.Base.*;
 
 public class XMLStudentsFormatter implements StudentsFormatter {
 
-    /* Line separator */
     private final static String NEW_LINE = System.getProperty("line.separator");
 
     private static XMLStudentsFormatter singletonInstance;
@@ -13,6 +12,11 @@ public class XMLStudentsFormatter implements StudentsFormatter {
 
     }
 
+    /**
+     * 实现单例模式
+     *
+     * @return the object of this class
+     */
     public static XMLStudentsFormatter getSingletonInstance() {
 
         if (singletonInstance == null) {
