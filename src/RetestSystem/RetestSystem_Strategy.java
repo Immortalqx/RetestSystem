@@ -1,6 +1,7 @@
 package RetestSystem;
 
 import RetestSystem.Base.*;
+import RetestSystem.Strategy.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.util.regex.Pattern;
 
 /**
  * This class implements a retest system.
+ * 策略模式与单一实例模式的运用
  *
  * @author 刘权祥
  * @version 2.0.0
@@ -27,7 +29,7 @@ import java.util.regex.Pattern;
  * @see RetestSystem.Base.TestItem
  */
 
-public class RetestSystem {
+public class RetestSystem_Strategy {
 
     private static final BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
     private static final PrintWriter stdOut = new PrintWriter(System.out, true);
@@ -35,6 +37,8 @@ public class RetestSystem {
 
     private final StudentCatalog studentCatalog;
     private final TestDatabase testDatabase;
+
+    private StudentsFormatter studentsFormatter;
 
     /**
      * Loads the information of the student catalog and the test database and starts
@@ -49,7 +53,7 @@ public class RetestSystem {
 
         TestDatabase testDatabase = loadTestDatabase();
 
-        RetestSystem app = new RetestSystem(studentCatalog, testDatabase);
+        RetestSystem_Strategy app = new RetestSystem_Strategy(studentCatalog, testDatabase);
 
         app.run();
     }
@@ -61,10 +65,11 @@ public class RetestSystem {
      * @param initialStudentCatalog StudentCatalog arguments.
      * @param initialTestDatabase   TestDatabase arguments.
      */
-    public RetestSystem(StudentCatalog initialStudentCatalog, TestDatabase initialTestDatabase) {
+    public RetestSystem_Strategy(StudentCatalog initialStudentCatalog, TestDatabase initialTestDatabase) {
 
         this.studentCatalog = initialStudentCatalog;
         this.testDatabase = initialTestDatabase;
+
     }
 
     /**
@@ -192,26 +197,26 @@ public class RetestSystem {
      */
     private void run() throws IOException {
 
+        for (Student student : studentCatalog) {
+            generateExamPaper(student);
+        }
+
         int choice = getChoice();
 
         while (choice != 0) {
 
             if (choice == 1) {
-                addStudentToCatalog();
+                setStudentsFormatter(
+                        PlainTextStudentsFormatter.getSingletonInstance());
             } else if (choice == 2) {
-                displayStudentCatalog();
+                setStudentsFormatter(
+                        HTMLStudentsFormatter.getSingletonInstance());
             } else if (choice == 3) {
-                displayExamPaper();
-            } else if (choice == 4) {
-                generateExamPaper();
-            } else if (choice == 5) {
-                entryScore();
-            } else if (choice == 6) {
-                lookupTotalScore();
-            } else if (choice == 7) {
-                lookupTestScore();
+                setStudentsFormatter(
+                        XMLStudentsFormatter.getSingletonInstance());
             }
-
+            stdOut.flush();
+            displayStudents();
             choice = getChoice();
         }
     }
@@ -231,13 +236,9 @@ public class RetestSystem {
                 stdErr.println();
                 stdErr.print("""
                         [0]  Quit
-                        [1]  Add students to the system.
-                        [2]  Display all students.
-                        [3]  Display exam paper through student identification code (including test question number, question stem and difficulty coefficient).
-                        [4]  Generate random retest papers for designated students.
-                        [5]  Enter the retest score of the designated student.
-                        [6]  Display the total score of the specified student's retest exam.
-                        [7]  Display the score of each question of the designated student's re-examination exam.
+                        [1]  Display Plain Text
+                        [2]  Display HTML
+                        [3]  Display XML
                         choice>\s""");
                 stdErr.flush();
 
@@ -555,6 +556,102 @@ public class RetestSystem {
             resultb = name.matches(regexb);
         }
         return name;
+    }
+
+    /**
+     * Changes the format in which the student catalog will be
+     * displayed.
+     *
+     * @param newFormatter format in which the student catalog will
+     *                     be displayed.
+     */
+    private void setStudentsFormatter(
+            StudentsFormatter newFormatter) {
+
+        studentsFormatter = newFormatter;
+    }
+
+    /**
+     * Displays the students in the current format.
+     */
+    private void displayStudents() {
+        stdOut.println(
+                studentsFormatter.formatStudents(studentCatalog));
+        stdOut.flush();
+    }
+
+    /**
+     * Generate a random retest paper for the designated student.
+     *
+     * @param student the designated student.
+     */
+    private void generateExamPaper(Student student) {
+
+        if (student == null) {
+            stdErr.println("There is no student with that id.");
+        } else {
+
+            if (testDatabase.getNumberOfTests() < 10) {
+                stdErr.println("There are less than ten test questions in the test question bank, "
+                        + "and the test paper cannot be generated.");
+            } else {
+
+                int[] testTypeNums = new int[3];
+
+                for (Test test : this.testDatabase) {
+                    if (test instanceof EnglishTest) {
+                        testTypeNums[0]++;
+                    } else if (test instanceof MathTest) {
+                        testTypeNums[1]++;
+                    } else if (test instanceof ProfessionalTest) {
+                        testTypeNums[2]++;
+                    }
+                }
+
+                if (testTypeNums[0] < 3 || testTypeNums[1] < 3 || testTypeNums[2] < 4) {
+                    stdErr.println("There are not enough English questions or math questions or professional "
+                            + "questions in the test database.");
+                    return;
+                }
+                //采用随机生成试卷
+                Random random = new Random();
+                ExamPaper examPaper = new ExamPaper();
+
+                Arrays.fill(testTypeNums, 0);
+
+                int allTestCount = testDatabase.getNumberOfTests();
+
+                boolean[] testIsChoose = new boolean[allTestCount];
+
+                while (examPaper.getNumberOfItems() < 10) {
+
+                    int target = random.nextInt(allTestCount);
+                    Test test = testDatabase.getTest(target);
+
+                    if (test instanceof EnglishTest) {
+                        if (testTypeNums[0] < 3 && (!testIsChoose[target])) {
+                            testTypeNums[0]++;
+                            examPaper.addTestItem(new TestItem(test, 0));
+                            testIsChoose[target] = true;
+                        }
+                    } else if (test instanceof MathTest) {
+                        if (testTypeNums[1] < 3 && (!testIsChoose[target])) {
+                            testTypeNums[1]++;
+                            examPaper.addTestItem(new TestItem(test, 0));
+                            testIsChoose[target] = true;
+                        }
+                    } else if (test instanceof ProfessionalTest) {
+                        if (testTypeNums[2] < 4 && (!testIsChoose[target])) {
+                            testTypeNums[2]++;
+                            examPaper.addTestItem(new TestItem(test, 0));
+                            testIsChoose[target] = true;
+                        }
+                    }
+
+                }
+                student.setExamPaper(examPaper);
+            }
+        }
     }
 
 }
