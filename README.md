@@ -2,8 +2,6 @@
 
 > @Author : 刘权祥
 >
-> @Number : 2019300414
-> 
 > @E-mail : its2023@mail.nwpu.edu.cn
 > 
 > @github : [Immortal-lqx](https://github.com/Immortal-lqx)
